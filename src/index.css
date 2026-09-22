@@ -4,12 +4,29 @@
 
 body{
     margin:0;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Ariel", serif;
 }
-
 button, 
 input,
 select,
 textarea{
     font-family: inherit;
+}
+
+main{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+section{
+    width:100%;
+    max-width: 600px;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    border: 5px solid #000000;
+
 }
