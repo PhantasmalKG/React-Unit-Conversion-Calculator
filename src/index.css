@@ -30,3 +30,58 @@ section{
     border: 5px solid #000000;
 
 }
+
+section > div{
+    margin-bottom: 1.5rem;
+}
+
+label{
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+input, select{
+    width:100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius:6px;
+    font-size: 1.5rem;
+}
+
+div > div{
+    display: flex;
+    gap: 0.5rem;
+}
+
+div > div input{
+    flex: 2;
+}
+
+div > div select{
+    flex: 1;
+}
+
+button{
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+p{
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+section > button{
+    width: 100%;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
