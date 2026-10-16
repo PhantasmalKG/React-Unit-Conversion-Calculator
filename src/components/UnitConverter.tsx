@@ -1,13 +1,20 @@
 import {useState} from "react";
+import { convertLength, type Units } from "../utils/unitconversions";
 
 
 
 function UnitConverter() {
   const [value, setValue] = useState("0");
-  const [category, setCategory] = useState(" length");
-  const [fromUnit, setFromUnit] = useState(" meters");
-  const [toUnit, setToUnit] = useState(" feet");
+  const [category, setCategory] = useState("length");
+  const [fromUnit, setFromUnit] = useState<Units>("meters");
+  const [toUnit, setToUnit] = useState<Units>("feet");
 
+  const numericValue = Number(value);
+  const result = value.trim() !== "" && Number.isFinite(numericValue) 
+  ? convertLength(numericValue, fromUnit, toUnit) : null;
+ 
+  const valueAdjustment = (number:number) => Number(number.toFixed(6)).toLocaleString("en-US");
+ 
   return (
     <section>
       <h1>Unit Converter</h1>
@@ -32,7 +39,7 @@ function UnitConverter() {
                  onChange={(e) => setValue(e.target.value)}
           />
         </div>
-        <select value={fromUnit} onChange={(e) => setFromUnit(e.target.value)}>
+        <select value={fromUnit} onChange={(e) => setFromUnit(e.target.value as Units)}>
           <option value="meters">Meters</option>
           <option value="kilometers">Kilometers</option>
           <option value="miles">Miles</option>
@@ -45,11 +52,11 @@ function UnitConverter() {
       <div>
         <label htmlFor="to-value">To</label>
         <div>
-          <select id = "to-unit" value={toUnit} onChange={(e) => setToUnit(e.target.value)}>
-            <option value=" meters">Meters</option>
-            <option value=" kilometers">Kilometer</option>
-            <option value=" miles">Miles</option>
-            <option value=" feet">Feet</option>
+          <select id = "to-unit" value={toUnit} onChange={(e) => setToUnit(e.target.value as Units)}>
+            <option value="meters">Meters</option>
+            <option value="kilometers">Kilometers</option>
+            <option value="miles">Miles</option>
+            <option value="feet">Feet</option>
           </select>
         </div>
       </div>
@@ -57,7 +64,7 @@ function UnitConverter() {
     <button>Convert</button>
       
 
-      <p>Result: {value || "0"}{toUnit}</p>
+      <p>Result: {" "}{category === "length" && result !== null ? valueAdjustment(result) : "Select a category and enter a value"}{toUnit}</p>
     </section>
   )
 }
